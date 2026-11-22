@@ -14,7 +14,7 @@ Open the [catalogue](http://localhost:5174), then the [sales inbox](http://local
 
 To stop and remove the containers, run `docker compose down`. No `.env` file is required for the local demo. Copy `.env.example` to `.env` only to override SMTP and proxy settings. Never commit `.env` or real credentials.
 
-> Compose configuration was validated, but a full container startup could not be rehearsed in the authoring environment because its Docker daemon was unavailable. The API tests and client production build passed. See the verification section below.
+The one-command Compose setup was rehearsed on 22 November 2026. The web, API, and Mailpit containers started, and a browser enquiry appeared in Mailpit. See the verification section below.
 
 ## Stack and structure
 
@@ -77,9 +77,10 @@ The non-Docker path needs an SMTP sink for successful enquiries. The browsing fl
 npm test
 npm run build
 docker compose config
+npm audit
 ```
 
-The API tests cover the five editorial picks, every category's partition, empty/matching/unmatched search, query bounds, unknown products, enquiry validation, SMTP success, and SMTP failure. The build includes TypeScript checking and the production client bundle. Browser smoke checks covered home, category, empty/matching/unmatched search, product detail, enquiry error and success states, and direct route refresh. The success check used a temporary local SMTP receiver and verified the product and contact data in the captured message. Home and product pages were checked at a 390 px viewport without horizontal overflow. A clean Docker and Mailpit run remains to be checked on a machine with a working Docker daemon; a full keyboard and screen-reader audit remains useful.
+The API tests cover the five editorial picks, every category's partition, empty/matching/unmatched search, query bounds, unknown products, enquiry validation, SMTP success, and SMTP failure. The build includes TypeScript checking and the production client bundle. Browser checks covered home, category, empty/matching/unmatched search, product detail, enquiry error and success states, and direct route refresh. The Compose-hosted enquiry showed a thank-you message, and the correct product and test contact details appeared in Mailpit. Home and product pages fit a 390 px viewport without horizontal overflow. Tab order, Enter-to-search, keyboard product opening, and enquiry-form focus were checked. A full screen-reader audit remains useful. On 22 November 2026, `npm audit` reported zero vulnerabilities after updating Nodemailer.
 
 ## Known limits
 
