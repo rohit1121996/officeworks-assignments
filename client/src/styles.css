@@ -393,13 +393,31 @@ h1 {
   color: #646f65;
 }
 .breadcrumbs {
-  display: flex;
-  gap: 11px;
-  align-items: center;
   color: #737c72;
   font-size: 12px;
   margin: 40px 0 24px;
+}
+.breadcrumbs ol {
+  display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 11px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.breadcrumbs li {
+  min-width: 0;
+}
+.breadcrumbs li + li::before {
+  content: "/";
+  margin-right: 11px;
+}
+.breadcrumbs li[aria-current="page"] {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .breadcrumbs a {
   text-decoration: underline;

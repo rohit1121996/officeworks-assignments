@@ -434,15 +434,19 @@ function ProductPage() {
     <State loading={loading} error={error}>
       {data && (
         <>
-          <div className="breadcrumbs">
-            <Link to="/">Home</Link>
-            <span>/</span>
-            <Link to={`/categories/${data.categorySlug}`}>
-              {data.categoryName}
-            </Link>
-            <span>/</span>
-            <span>{data.title}</span>
-          </div>
+          <nav className="breadcrumbs" aria-label="Breadcrumb">
+            <ol>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to={`/categories/${data.categorySlug}`}>
+                  {data.categoryName}
+                </Link>
+              </li>
+              <li aria-current="page">{data.title}</li>
+            </ol>
+          </nav>
           <div className="product-detail">
             <div className="detail-image">
               <img
