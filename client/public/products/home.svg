@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Home product illustration">
+<rect width="600" height="600" fill="#eee2d3"/><circle cx="142" cy="145" r="160" fill="#f6eee2"/><path d="M0 477h600v123H0z" fill="#d9c6ad"/><ellipse cx="300" cy="491" rx="159" ry="27" fill="#c4aa8d"/>
+<path d="M234 157h132l-15 87c-5 31 8 56 27 89 24 42 32 95 15 122-17 29-71 36-93 36s-76-7-93-36c-17-27-9-80 15-122 19-33 32-58 27-89z" fill="#ad6e57"/><path d="M237 158h126" stroke="#8a503e" stroke-width="18" stroke-linecap="round"/><path d="M235 277c44 25 85 26 130 1M224 367c54 29 100 29 152 0" stroke="#c58a70" stroke-width="15" fill="none"/>
+<path d="M301 160c-37-72-73-85-101-110M301 160c35-80 62-99 100-129M301 160c-5-96 4-116 14-145" fill="none" stroke="#60785a" stroke-width="9" stroke-linecap="round"/><path d="M201 47c-33 7-55 22-67 48 34 7 60-4 78-31M401 31c36-2 58 10 76 31-32 17-58 12-81-11" fill="#718965"/>
+</svg>
