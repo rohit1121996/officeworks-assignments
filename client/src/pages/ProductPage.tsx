@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import type { Product } from "../../../shared/types.js";
+import { Breadcrumbs } from "../components/Breadcrumbs.js";
 import { EnquiryForm } from "../components/EnquiryForm.js";
 import { RequestState } from "../components/RequestState.js";
 import { useRequest } from "../useRequest.js";
@@ -20,19 +21,16 @@ export function ProductPage() {
     <RequestState loading={loading} error={error}>
       {data && (
         <>
-          <nav className="breadcrumbs" aria-label="Breadcrumb">
-            <ol>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to={`/categories/${data.categorySlug}`}>
-                  {data.categoryName}
-                </Link>
-              </li>
-              <li aria-current="page">{data.title}</li>
-            </ol>
-          </nav>
+          <Breadcrumbs
+            links={[
+              { label: "Home", to: "/" },
+              {
+                label: data.categoryName,
+                to: `/categories/${data.categorySlug}`,
+              },
+            ]}
+            current={data.title}
+          />
           <div className="product-detail">
             <div className="detail-image">
               <img

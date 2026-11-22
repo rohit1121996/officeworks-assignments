@@ -1,5 +1,6 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import type { CategoryResponse } from "../../../shared/types.js";
+import { Breadcrumbs } from "../components/Breadcrumbs.js";
 import { ProductSection } from "../components/Catalogue.js";
 import { RequestState } from "../components/RequestState.js";
 import { useRequest } from "../useRequest.js";
@@ -14,10 +15,11 @@ export function CategoryPage() {
       {data && (
         <>
           <div className="page-heading">
-            <Link className="back" to="/">
-              ← All categories
-            </Link>
-            <span className="eyebrow">Collection / {data.category.name}</span>
+            <Breadcrumbs
+              links={[{ label: "Home", to: "/" }]}
+              current={data.category.name}
+            />
+            <span className="eyebrow">Collection</span>
             <h1>{data.category.name}</h1>
             <p>Considered essentials, selected for the everyday.</p>
           </div>

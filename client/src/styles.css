@@ -359,12 +359,6 @@ h1 {
   font-size: 16px;
   color: #6c716b;
 }
-.back {
-  display: inline-block;
-  margin-bottom: 26px;
-  color: #526456;
-  font-size: 13px;
-}
 .status {
   margin: 80px auto;
   max-width: 700px;
@@ -396,6 +390,9 @@ h1 {
   color: #737c72;
   font-size: 12px;
   margin: 40px 0 24px;
+}
+.page-heading .breadcrumbs {
+  margin: 0 0 26px;
 }
 .breadcrumbs ol {
   display: flex;
