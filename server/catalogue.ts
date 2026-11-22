@@ -172,7 +172,7 @@ export class Catalogue {
 
   search(query: string): Product[] {
     const term = query.trim().toLocaleLowerCase();
-    if (!term) return [];
+    if (!term) return products;
     return products.filter((item) =>
       [item.title, item.description, item.categoryName].some((value) =>
         value.toLocaleLowerCase().includes(term),

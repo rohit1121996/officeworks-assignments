@@ -45,12 +45,12 @@ The sample data makes the review deterministic. Fake Store API is allowed by the
 | --- | --- |
 | `GET /api/home` | Categories and five top-rated products |
 | `GET /api/categories/:slug` | One category, partitioned into top-rated and additional |
-| `GET /api/products?q=term` | Matching products; empty term returns an empty list |
+| `GET /api/products?q=term` | Matching products; absent or blank term returns all products |
 | `GET /api/products/:id` | One product or 404 |
 | `POST /api/enquiries` | Validate contact details and product, send mail, then return 201 |
 | `GET /api/health` | Basic health response |
 
-The five editorial top-rated IDs are `t1`, `t2`, `h1`, `o1`, and `s1`. Each category has at least one top-rated and one additional item. Search checks title, description, and category text after trimming and lowercasing. The server resolves the product by ID for the email; the client cannot supply its title or price.
+The five editorial top-rated IDs are `t1`, `t2`, `h1`, `o1`, and `s1`. Each category has at least one top-rated and one additional item. Search checks title, description, and category text after trimming and lowercasing. A blank search shows all twelve products. The server resolves the product by ID for the email; the client cannot supply its title or price.
 
 ## Configuration
 
@@ -79,7 +79,7 @@ npm run build
 docker compose config
 ```
 
-The API tests cover the five editorial picks, every category's partition, search normalization and bounds, unknown products, enquiry validation, SMTP success, and SMTP failure. The build includes TypeScript checking and the production client bundle. A final manual smoke check should run on a machine with Docker: browse home → category → search → detail → submit enquiry → confirm the thank-you message and Mailpit email. Check narrow viewport, keyboard navigation, and direct route refresh as well.
+The API tests cover the five editorial picks, every category's partition, empty/matching/unmatched search, query bounds, unknown products, enquiry validation, SMTP success, and SMTP failure. The build includes TypeScript checking and the production client bundle. Browser smoke checks covered home, category, empty/matching/unmatched search, product detail, enquiry error and success states, and direct route refresh. The success check used a temporary local SMTP receiver and verified the product and contact data in the captured message. Home and product pages were checked at a 390 px viewport without horizontal overflow. A clean Docker and Mailpit run remains to be checked on a machine with a working Docker daemon; a full keyboard and screen-reader audit remains useful.
 
 ## Known limits
 

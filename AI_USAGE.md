@@ -20,7 +20,8 @@ No `AGENTS.md`, `CLAUDE.md`, or `.cursor/rules` existed in this initially empty 
 - The initial TypeScript error handler treated an unknown error as a typed Fastify error. `npm run check` caught it; the handler now narrows the fields it uses.
 - The first test command used the `tsx` CLI, which attempted an IPC socket blocked by the sandbox. It was changed to Node's test runner with `tsx` imported; all five tests passed.
 - The initial plan suggested an optional live Fake Store adapter. Review showed it was unnecessary for the requested acceptance flows, so the implementation and plan were aligned around a replaceable sample source.
+- A user review identified that blank search should show all products. The initial implementation and written assumption returned none. Both the API and UI were corrected, with API and browser checks for empty, matching, and unmatched search.
 
 ## Time spent
 
-Approximately 1 hour of elapsed work on 22 November 2026: planning and PDF review about 10 minutes; implementation about 25 minutes; testing, debugging, and documentation about 25 minutes. These are estimates, not stopwatch measurements. Docker startup and browser visual review were attempted but could not be completed in this environment; they are not counted as passing checks.
+Initial implementation took approximately 1 hour of elapsed work on 22 November 2026: planning and PDF review about 10 minutes; implementation about 25 minutes; testing, debugging, and documentation about 25 minutes. The follow-up search correction and broader scenario checks took approximately another 20 minutes. These are estimates, not stopwatch measurements. Browser scenarios and local SMTP delivery were verified in the follow-up; Docker and Mailpit startup could not be completed because the Docker daemon was unavailable.

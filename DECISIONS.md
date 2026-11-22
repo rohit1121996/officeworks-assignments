@@ -4,7 +4,7 @@
 
 - **“Top rated” means curated, not calculated.** The five home-page products are the entrepreneur's chosen IDs (`t1`, `t2`, `h1`, `o1`, `s1`). Each category shows its chosen products first and its remaining products separately. The sample ratings are display metadata only.
 - **Sample products are sufficient.** The brief says product metadata is not important and Fake Store API is acceptable, not mandatory. Twelve sample products and bundled artwork keep the local demonstration available even if an external API or image host fails.
-- **Search is literal text matching.** A submitted term is trimmed and matched case-insensitively against title, description, and category. Blank terms show a prompt and no results. Fuzzy search, ranking, and pagination are deferred for the small catalogue.
+- **Search is literal text matching.** A submitted term is trimmed and matched case-insensitively against title, description, and category. An absent or blank term shows the full catalogue. Fuzzy search, ranking, and pagination are deferred for the small catalogue.
 - **Contact details are name and email.** Phone and message are optional. The enquiry email includes the server-resolved product, not a client-supplied description.
 - **Local “sales inbox” is Mailpit.** A successful submission is accepted by its SMTP server and visible in its web UI. It does not send to an external address.
 - **Web is the chosen client.** React/TypeScript and Node.js/TypeScript are both allowed options and make local review straightforward.

@@ -3,6 +3,7 @@ import {
   Link,
   Route,
   Routes,
+  useLocation,
   useNavigate,
   useParams,
   useSearchParams,
@@ -47,7 +48,15 @@ function useRequest<T>(path: string) {
 
 function SearchBox() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [value, setValue] = useState("");
+  useEffect(() => {
+    setValue(
+      location.pathname === "/search"
+        ? new URLSearchParams(location.search).get("q") ?? ""
+        : "",
+    );
+  }, [location.pathname, location.search]);
   function submit(event: FormEvent) {
     event.preventDefault();
     navigate(
@@ -85,7 +94,7 @@ function Layout({ children }: { children: ReactNode }) {
           </Link>
           <nav aria-label="Main navigation">
             <Link to="/">Home</Link>
-            <Link to="/#categories">Categories</Link>
+            <a href="/#categories">Categories</a>
           </nav>
           <SearchBox />
         </div>
@@ -285,28 +294,26 @@ function SearchPage() {
     <>
       <div className="page-heading">
         <span className="eyebrow">Search</span>
-        <h1>{query ? `Results for “${query}”` : "Search the collection"}</h1>
+        <h1>{query ? `Results for “${query}”` : "All products"}</h1>
         <p>
           {query
             ? "Only products matching your search are shown."
-            : "Enter a product, category, or keyword in the search bar."}
+            : "Browse the full collection or enter a keyword to narrow it down."}
         </p>
       </div>
-      {query && (
-        <State loading={loading} error={error}>
-          {data &&
-            (data.products.length ? (
-              <ProductSection
-                title="Matching products"
-                products={data.products}
-              />
-            ) : (
-              <div className="status">
-                No products match “{query}”. Try another term.
-              </div>
-            ))}
-        </State>
-      )}
+      <State loading={loading} error={error}>
+        {data &&
+          (data.products.length ? (
+            <ProductSection
+              title={query ? "Matching products" : "All products"}
+              products={data.products}
+            />
+          ) : (
+            <div className="status">
+              No products match “{query}”. Try another term.
+            </div>
+          ))}
+      </State>
     </>
   );
 }
@@ -418,6 +425,11 @@ function ProductPage() {
     `/api/products/${encodeURIComponent(id ?? "")}`,
   );
   const [showForm, setShowForm] = useState(false);
+  useEffect(() => {
+    if (showForm) {
+      document.querySelector<HTMLInputElement>("#enquiry input[name='name']")?.focus();
+    }
+  }, [showForm]);
   return (
     <State loading={loading} error={error}>
       {data && (

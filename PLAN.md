@@ -1,6 +1,6 @@
 # AI-Native Engineer challenge: implementation plan
 
-Status: proposed architecture and scope; no application code has been written yet.
+Status: implemented. The blank-search behavior was updated after user review to show all products.
 
 ## 1. Reading of the brief
 
@@ -68,7 +68,7 @@ Normalized product fields: `id`, `title`, `description`, `categorySlug`, `catego
 
 **Top-rated assumption:** the entrepreneur's five choices are editorial selections, not an automatic sort of sample ratings. Choose five valid IDs covering every sample category (at least one per category). Each sample category also needs at least one additional product. On category pages, the category's chosen items are shown first and all its other products are shown below. Document the five IDs and how they can be changed.
 
-**Search assumption:** trim whitespace and perform case-insensitive substring matching over title, description, and category. An empty submitted term shows a prompt, not an unfiltered catalogue. No fuzzy search, stemming, or pagination is needed for the small sample set.
+**Search behavior:** trim whitespace and perform case-insensitive substring matching over title, description, and category. An absent or empty term shows the full catalogue. No fuzzy search, stemming, or pagination is needed for the small sample set.
 
 **Enquiry assumption:** name and email are required contact details; phone and message are optional. The server looks up the product from `productId`, so the client cannot forge the product title or price in the email. In local mode, “sales inbox receives an email” means Mailpit receives and displays it at `localhost:8025`; production delivery needs real SMTP configuration. No customer email or form body is stored in the application.
 

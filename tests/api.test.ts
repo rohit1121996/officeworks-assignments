@@ -46,15 +46,21 @@ test("home has five distinct editorial picks and every category has more product
   }
 });
 
-test("search is trimmed, case-insensitive, and only returns matching products", async () => {
+test("search handles empty, matching, unmatched, and invalid queries", async () => {
   const result = await app.inject("/api/products?q=%20LAMP%20");
   assert.equal(result.statusCode, 200);
   assert.deepEqual(
     result.json().products.map((item: Product) => item.id),
     ["t2"],
   );
+  const all = await app.inject("/api/products");
   const blank = await app.inject("/api/products?q=%20%20");
-  assert.deepEqual(blank.json().products, []);
+  assert.equal(all.statusCode, 200);
+  assert.equal(blank.statusCode, 200);
+  assert.equal(all.json().products.length, 12);
+  assert.deepEqual(blank.json().products, all.json().products);
+  const unmatched = await app.inject("/api/products?q=does-not-exist");
+  assert.deepEqual(unmatched.json().products, []);
   const tooLong = await app.inject(`/api/products?q=${"a".repeat(121)}`);
   assert.equal(tooLong.statusCode, 400);
 });
